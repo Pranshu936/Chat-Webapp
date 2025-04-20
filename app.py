@@ -10,7 +10,7 @@ from werkzeug.utils import secure_filename
 import redis
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'pranshu123')
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'secret key')
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024  # 5MB
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
