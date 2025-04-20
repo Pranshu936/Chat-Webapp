@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Chat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+</head>
+<body>
+    <div class="chat-container">
+        <header class="chat-header">
+            <h1>FlaskChat</h1>
+            <div class="user-info">
+                <span id="username-display"></span>
+            </div>
+        </header>
+        <div class="chat-box" id="chat-box"></div>
+        <div class="input-container">
+            <input id="message-input" type="text" placeholder="Type your message...">
+            <button id="send-button">Send</button>
+        </div>
+    </div>
+
+    <div class="username-modal" id="username-modal">
+        <div class="modal-content">
+            <h2>Enter your username</h2>
+            <input type="text" id="username-input" placeholder="Username">
+            <button id="username-submit">Join Chat</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ user.nickname }}'s Profile</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/chat.css') }}">
+  <style>
+    :root {
+      --bg-color: #fff;
+      --container-bg: #f9f9f9;
+      --text-color: #333;
+      --subtext-color: #555;
+      --link-color: #007bff;
+      --link-hover-color: #0056b3;
+      --shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    body.dark-mode {
+      --bg-color: #1e1e1e;
+      --container-bg: #2e2e2e;
+      --text-color: #e0e0e0;
+      --subtext-color: #ccc;
+      --link-color: #66aaff;
+      --link-hover-color: #0096ff;
+      --shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+    .profile-container {
+      max-width: 600px;
+      margin: 50px auto;
+      background-color: var(--bg-color);
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      font-family: Arial, sans-serif;
+      color: var(--text-color);
+    }
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    .profile-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--link-color);
+    }
+    .profile-header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+    .profile-info {
+      margin-bottom: 20px;
+    }
+    .profile-info p {
+      margin: 5px 0;
+      color: var(--subtext-color);
+    }
+    .profile-actions {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .profile-actions a {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: var(--link-color);
+      color: #fff;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+      margin: 0 10px;
+    }
+    .profile-actions a:hover {
+      background-color: var(--link-hover-color);
+    }
+  </style>
+</head>
+<body>
+  <div class="profile-container">
+    <div class="profile-header">
+      <img src="{{ user.avatar }}" alt="{{ user.nickname }}" class="profile-avatar">
+      <h1>{{ user.nickname }}</h1>
+    </div>
+    <div class="profile-info">
+      <p><strong>Username:</strong> {{ user.username }}</p>
+      <p><strong>Email:</strong> {{ user.email }}</p>
+      <p><strong>Bio:</strong> {{ user.bio or "No bio available." }}</p>
+    </div>
+    {% if user.id == current_user.id %}
+    <div class="profile-actions">
+      <a href="{{ url_for('edit_profile') }}">Edit Profile</a>
+    </div>
+    {% endif %}
+    <div class="profile-actions">
+      <a href="{{ url_for('chat') }}">Back to Chat</a>
+    </div>
+  </div>
+  <script>
+    // Check the stored preference for dark mode and add the dark-mode class to the body if enabled.
+    if (localStorage.getItem("darkMode") === "enabled") {
+      document.body.classList.add("dark-mode");
+    }
+  </script>
+</body>
+</html>
